@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lg.dome">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:name=".App"
@@ -17,6 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".mvc.MvcActivity"/>
+        <activity android:name=".mvp.ui.MvpActivity"/>
+        <activity android:name=".mvpcontract.MvpsActivity"/>
+
     </application>
 
 </manifest>
