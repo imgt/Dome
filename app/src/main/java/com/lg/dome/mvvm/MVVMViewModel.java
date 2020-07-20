@@ -23,10 +23,20 @@ public class MVVMViewModel extends BaseObservable {
     private Context context;
     private String Input;
     private String result;
+    private boolean show;
 
     @Bindable
     public String getResult() {
         return result;
+    }
+    @Bindable
+    public boolean isShow() {
+        return show;
+    }
+
+    public void setShow(boolean show) {
+        this.show = show;
+        notifyPropertyChanged(BR.show);
     }
 
     public void setResult(String result) {
@@ -53,7 +63,7 @@ public class MVVMViewModel extends BaseObservable {
     }
 
     public void getData(View view){
-
+        setShow(true);
         Input = binding.etAccount.getText().toString();
         new Thread(new Runnable() {
             @Override
@@ -64,6 +74,7 @@ public class MVVMViewModel extends BaseObservable {
                     @Override
                     public void onSuccess(Account account) {
                         String info = account.getName() + "|" + account.getLevel();
+                        setShow(false);
                         setResult(info);
                     }
 

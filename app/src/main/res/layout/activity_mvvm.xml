@@ -7,7 +7,9 @@
         <variable
             name="viewModel"
             type="com.lg.dome.mvvm.MVVMViewModel" />
-
+        <variable
+            name="view"
+            type="android.view.View" />
     </data>
 
     <LinearLayout
@@ -63,6 +65,12 @@
             android:layout_height="wrap_content"
             android:hint="暂未获取账户信息"
             android:text="@{viewModel.result}"/>
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.show?view.VISIBLE:view.GONE}"
+          />
 
     </LinearLayout>
 </layout>
