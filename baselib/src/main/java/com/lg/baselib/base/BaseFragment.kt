@@ -1,18 +1,4 @@
-/*
- * Copyright 2018-2020 KunMinX
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 package com.lg.baselib.base
 
 import android.content.Context
@@ -30,19 +16,21 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
+import com.lg.baselib.base.BaseApp
 import com.lg.baselib.base.model.SharedViewModel
-import com.lg.baselib.base.nav.NavHostFragment
 
 /**
+ * Create by KunMinX at 19/7/11
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment< DB : ViewDataBinding> : Fragment() {
     protected var mActivity: AppCompatActivity? = null
     var sharedViewModel: SharedViewModel? = null
     protected var mAnimationLoaded = false
     private var mFragmentProvider: ViewModelProvider? = null
     private var mActivityProvider: ViewModelProvider? = null
-    private var mBinding: ViewDataBinding? = null
+    lateinit var mBinding: DB
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mActivity = context as AppCompatActivity
@@ -51,50 +39,30 @@ abstract class BaseFragment : Fragment() {
     protected abstract fun initViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedViewModel =
-            (mActivity!!.applicationContext as BaseApp).getAppViewModelProvider(
-                mActivity
-            ).get(
-                SharedViewModel::class.java
-            )
+        sharedViewModel = (mActivity!!.applicationContext as BaseApp).getAppViewModelProvider(mActivity).get(SharedViewModel::class.java)
         initViewModel()
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    protected abstract val dataBindingConfig: DataBindingConfig
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val dataBindingConfig = dataBindingConfig
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(
-            inflater,
-            dataBindingConfig.layout,
-            container,
-            false
-        )
-        binding.lifecycleOwner = this
-        //  binding.setVariable(BR.vm, dataBindingConfig.getStateViewModel());
-        val bindingParams = dataBindingConfig.bindingParams
-        var i = 0
-        val length = bindingParams.size()
-        while (i < length) {
-            binding.setVariable(bindingParams.keyAt(i), bindingParams.valueAt(i))
-            i++
-        }
-        mBinding = binding
-        return binding.root
+    abstract fun layoutId(): Int
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mBinding = DataBindingUtil.inflate(inflater, layoutId(), container, false)
+        mBinding.lifecycleOwner = this
+        return mBinding.root
     }
+
 
     override fun onCreateAnimation(
         transit: Int,
         enter: Boolean,
-        nextAnim: Int
-    ): Animation? {
+        nextAnim: Int): Animation? { //TODO 错开动画转场与 UI 刷新的时机，避免掉帧卡顿的现象
         HANDLER.postDelayed({
             if (!mAnimationLoaded) {
                 mAnimationLoaded = true
@@ -137,10 +105,6 @@ abstract class BaseFragment : Fragment() {
             mActivityProvider = ViewModelProvider(mActivity!!)
         }
         return mActivityProvider!![modelClass]
-    }
-
-    protected fun nav(): NavController {
-        return NavHostFragment.findNavController(this)
     }
 
     companion object {

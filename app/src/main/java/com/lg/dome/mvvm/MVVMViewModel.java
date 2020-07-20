@@ -7,11 +7,13 @@ import android.view.View;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
+
 import com.lg.dome.BR;
 import com.lg.dome.databinding.ActivityMvvmBinding;
 import com.lg.dome.mvc.MvcActivity;
 import com.lg.dome.mvp.ui.MvpActivity;
 import com.lg.dome.mvpcontract.MvpsActivity;
+import com.lg.dome.mvvms.MvvmActivity;
 
 /**
  * Created by lqj on 2020/7/20.
@@ -60,6 +62,9 @@ public class MVVMViewModel extends BaseObservable {
 
     public void mvps(View view){
         context.startActivity(new Intent(context, MvpsActivity.class));
+    }
+    public void mvvm(View view){
+        context.startActivity(new Intent(context, MvvmActivity.class));
     }
 
     public void getData(View view){
