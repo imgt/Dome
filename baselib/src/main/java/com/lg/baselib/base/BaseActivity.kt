@@ -2,7 +2,6 @@ package com.lg.baselib.base
 
 import android.content.pm.ApplicationInfo
 import android.os.Bundle
-
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -19,6 +18,8 @@ abstract class BaseActivity< DB : ViewDataBinding>: AppCompatActivity() {
     lateinit var mBinding: DB
     var sharedViewModel: SharedViewModel? = null
     private var mActivityProvider: ViewModelProvider? = null
+    private var loadingDialog: LoadingDialog? = null
+
     protected abstract fun initViewModel()
 
     abstract fun layoutId(): Int
@@ -64,4 +65,34 @@ abstract class BaseActivity< DB : ViewDataBinding>: AppCompatActivity() {
         return mActivityProvider!![modelClass]
     }
 
+    /**
+     * 显示用户等待框
+     *
+     * @param msg 提示信息
+     */
+    protected open fun showDialog(msg: String?) {
+        if (loadingDialog != null && loadingDialog!!.isShowing()) {
+            loadingDialog!!.setLoadingMsg(msg)
+        } else {
+            loadingDialog = LoadingDialog(this)
+            loadingDialog!!.setLoadingMsg(msg)
+            loadingDialog!!.show()
+        }
+    }
+
+    /**
+     * 隐藏等待框
+     */
+    protected open fun dismissDialog() {
+        if (loadingDialog != null &&loadingDialog!!.isShowing()) {
+            loadingDialog!!.dismiss()
+            loadingDialog = null
+        }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mBinding!=null) {
+            mBinding.unbind()
+        }
+    }
 }

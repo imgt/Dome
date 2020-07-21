@@ -21,7 +21,6 @@ object ImageDownloader {
     fun down(callback: Callback?, imageBean: ImageBean) {
         Thread(Downloader(callback, imageBean)).start()
     }
-
     internal class Downloader(private val callback: Callback?, private val imageBean: ImageBean) : Runnable {
         override fun run() {
             try {
@@ -42,7 +41,6 @@ object ImageDownloader {
                 showUI(ERROR, null)
             }
         }
-
         private fun showUI(resultCode: Int, bitmap: Bitmap?) {
             if (callback != null) {
                 imageBean.bitmap = bitmap

@@ -28,24 +28,17 @@ public class NewsViewModel extends BaseViewModel {
      * 请求网络数据	success
      */
     public void requestData() {
-      //  showDialog.setValue(true, "加载中");
         Disposable disposable = NetManager.getInstance().news()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<NewsBean>() {
                     @Override
                     public void accept(NewsBean newsBean) throws Exception {
-                     //   showDialog.setValue(false);
                         news.setValue(newsBean);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                       // showDialog.setValue(false);
-                        /*
-                         * 发生了错误，通知UI层
-                         */
-                        error.setValue("发生错误了");
                     }
                 });
         addDisposable(disposable);
