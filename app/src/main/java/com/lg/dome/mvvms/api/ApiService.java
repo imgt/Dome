@@ -1,6 +1,9 @@
 package com.lg.dome.mvvms.api;
 
 import com.lg.dome.mvvms.viewmodel.NewsBean;
+import com.lg.dome.mvvms.viewmodel.DataBean;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -11,7 +14,7 @@ import retrofit2.http.GET;
 public interface ApiService {
     String BASE_URL = "https://news-at.zhihu.com/api/4/";
 
-    String JUE_JIN_BASE_URL = "http://timeline-merger-ms.juejin.im/v1/";
+    String JUE_JIN_BASE_URL = "";
 
     /**
      * 测试接口
@@ -19,6 +22,9 @@ public interface ApiService {
     @GET("news/latest")
     Observable<NewsBean> news();
 
+    @GET("Mapi/Art/artIndex")
+ Observable<ResultData<List<DataBean>>> art();
 
-
+    @GET("news/latest")
+    Observable<String> newstr();
 }

@@ -1,8 +1,9 @@
 package com.lg.dome.mvvms.api;
+import com.lg.dome.mvvms.api.converter.MyGsonConverterFactory;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by lqj on 2020/7/20.
@@ -17,7 +18,8 @@ public abstract class BaseApi {
         //支持返回Call<String>
        // builder.addConverterFactory(ScalarsConverterFactory.create());
         //支持直接格式化json返回Bean对象
-        builder.addConverterFactory(GsonConverterFactory.create());
+        //builder.addConverterFactory(GsonConverterFactory.create());
+        builder.addConverterFactory(MyGsonConverterFactory.create());
         //支持RxJava
         builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         builder.baseUrl(baseUrl);

@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by lqj on 2020/7/20.
@@ -42,6 +45,14 @@ public  abstract class BaseViewModel extends ViewModel {
 
     public void getError(LifecycleOwner owner, Observer<Object> observer) {
         error.observe(owner, observer);
+    }
+    protected  <T> void setSubscribe(Observable<T> observable, io.reactivex.Observer<T> observer) {
+        observable.subscribeOn(Schedulers.io())
+                //子线程访问网络
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                //回调到主线程
+                .subscribe(observer);
     }
 
     /**
