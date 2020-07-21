@@ -43,7 +43,7 @@ class MvvmActivity : BaseActivity<ActivityNewBinding>() {
         })
         mNewsViewModel!!.result.observe(this, Observer { result ->
             Log.e("====", result.toString())
-            dismissDialog()
+
             if (result.success) {
                 Log.e("result", result.data[0].content)
                 mBinding.tv.text = result.data[0].content
@@ -61,7 +61,7 @@ class MvvmActivity : BaseActivity<ActivityNewBinding>() {
     inner class ClickProxy {
 
         fun back() {
-            showDialog("")
+
             mNewsViewModel!!.requestData()
             mNewsViewModel!!.getData()
 

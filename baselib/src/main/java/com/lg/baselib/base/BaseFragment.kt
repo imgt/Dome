@@ -20,7 +20,7 @@ import com.lg.baselib.base.BaseApp
 import com.lg.baselib.base.model.SharedViewModel
 
 /**
- * Create by KunMinX at 19/7/11
+ *
  */
 abstract class BaseFragment< DB : ViewDataBinding> : Fragment() {
     protected var mActivity: AppCompatActivity? = null

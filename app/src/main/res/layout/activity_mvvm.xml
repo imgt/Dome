@@ -49,6 +49,13 @@
                 android:layout_marginBottom="50dp"
                 android:onClick="@{viewModel.mvvm}"
                 />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mv"
+                android:layout_marginBottom="50dp"
+                android:onClick="@{viewModel.mv}"
+                />
         </LinearLayout>
         <EditText
             android:id="@+id/et_Account"

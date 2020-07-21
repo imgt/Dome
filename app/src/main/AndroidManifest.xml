@@ -22,6 +22,7 @@
         <activity android:name=".mvp.ui.MvpActivity"/>
         <activity android:name=".mvpcontract.MvpsActivity"/>
         <activity android:name=".mvvms.MvvmActivity"/>
+        <activity android:name=".mvvms.HomeActivity"/>
 
     </application>
 

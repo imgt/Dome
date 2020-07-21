@@ -13,6 +13,7 @@ import com.lg.dome.databinding.ActivityMvvmBinding;
 import com.lg.dome.mvc.MvcActivity;
 import com.lg.dome.mvp.ui.MvpActivity;
 import com.lg.dome.mvpcontract.MvpsActivity;
+import com.lg.dome.mvvms.HomeActivity;
 import com.lg.dome.mvvms.MvvmActivity;
 
 /**
@@ -66,6 +67,10 @@ public class MVVMViewModel extends BaseObservable {
     public void mvvm(View view){
         context.startActivity(new Intent(context, MvvmActivity.class));
     }
+    public void mv(View view){
+        context.startActivity(new Intent(context, HomeActivity.class));
+    }
+
 
     public void getData(View view){
         setShow(true);

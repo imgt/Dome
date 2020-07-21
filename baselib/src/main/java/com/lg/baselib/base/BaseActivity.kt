@@ -12,7 +12,6 @@ import com.lg.baselib.base.model.SharedViewModel
 
 
 /**
- * Create by KunMinX at 19/8/1
  */
 abstract class BaseActivity< DB : ViewDataBinding>: AppCompatActivity() {
     lateinit var mBinding: DB

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/pageFragment">
+
+
+    <fragment
+        android:id="@+id/pageFragment"
+        android:name="com.lg.dome.mvvms.ui.PageFragment"
+        android:label="pageFragment"
+        tools:layout="@layout/fragment_page">
+        <action
+            android:id="@+id/action_welcome_to_register"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:destination="@id/loginFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/otherFragment"
+        android:name="com.lg.dome.mvvms.ui.OtherFragment"
+        android:label="OtherFragment"
+        tools:layout="@layout/fragment_other">
+    </fragment>
+
+    <fragment
+        android:id="@+id/meFragment"
+        android:name="com.lg.dome.mvvms.ui.MeFragment"
+        android:label="MeFragment"
+        tools:layout="@layout/fragment_me">
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.lg.dome.mvvms.ui.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+    </fragment>
+</navigation>

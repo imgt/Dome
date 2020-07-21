@@ -1,5 +1,4 @@
 /*
- * Copyright 2018-2020 KunMinX
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,23 +25,34 @@ import com.bumptech.glide.Glide;
 import com.lg.baselib.base.adapter.SimpleBaseBindingAdapter;
 import com.lg.dome.R;
 import com.lg.dome.databinding.ItemNewBinding;
+import com.lg.dome.mvvms.model.OnItemListener;
 import com.lg.dome.mvvms.viewmodel.NewsBean;
 
 
 /**
- * Create by KunMinX at 20/4/19
  */
 public class NewAdapter extends SimpleBaseBindingAdapter<NewsBean.StoriesBean, ItemNewBinding> {
-
+    private OnItemListener itemListener;
     public NewAdapter(Context context) {
         super(context, R.layout.item_new);
+    }
+
+    public void setItemListener(OnItemListener itemListener) {
+        this.itemListener = itemListener;
     }
 
     @Override
     protected void onSimpleBindItem(ItemNewBinding binding, NewsBean.StoriesBean item, RecyclerView.ViewHolder holder) {
         binding.setBean(item);
+        binding.getRoot().setOnClickListener(v -> {
+         if (itemListener!=null){
+             itemListener.onItemClick(v,holder.getLayoutPosition());
+         }
+
+        });
 
     }
+
     @BindingAdapter({"imageUrl"})
     public static void loadImage(ImageView imageView, String url) {
         Glide.with(imageView.getContext()).load(url).into(imageView);
