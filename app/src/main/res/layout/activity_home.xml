@@ -38,7 +38,7 @@
             </LinearLayout>
 
         </androidx.appcompat.widget.Toolbar>
-
+<!--        androidx.navigation.fragment.NavHostFragment-->
         <fragment
             android:id="@+id/nav_host_fragment"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -48,11 +48,20 @@
             android:layout_weight="1"
             app:defaultNavHost="true"
             app:navGraph="@navigation/main_navigation" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+       />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:background="@android:color/white"
             app:itemIconTint="@drawable/main_bottom_color_selector"
             app:itemTextColor="@drawable/main_bottom_color_selector"

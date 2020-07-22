@@ -16,7 +16,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.lg.baselib.base.BaseApp
 import com.lg.baselib.base.model.SharedViewModel
 
 /**

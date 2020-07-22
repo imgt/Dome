@@ -14,7 +14,7 @@ import retrofit2.http.GET;
 public interface ApiService {
     String BASE_URL = "https://news-at.zhihu.com/api/4/";
 
-    String JUE_JIN_BASE_URL = "";
+    String JUE_JIN_BASE_URL = "https://news-at.zhihu.com/api/4/";
 
     /**
      * 测试接口

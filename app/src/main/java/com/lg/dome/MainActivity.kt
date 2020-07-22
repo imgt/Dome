@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_mvvm)
         mvvmViewModel = MVVMViewModel(this, binding)
-        binding!!.setViewModel(mvvmViewModel) //初始化viewModel
+       binding!!.setViewModel(mvvmViewModel) //初始化viewModel
     }
 
 }

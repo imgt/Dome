@@ -25,14 +25,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="mvc"
-            android:layout_marginBottom="50dp"
+
             android:onClick="@{viewModel.go}"
             />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="mvp"
-                android:layout_marginBottom="50dp"
+
                 android:onClick="@{viewModel.mvp}"
                 />
             <Button
@@ -46,14 +46,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="mvvm"
-                android:layout_marginBottom="50dp"
+
                 android:onClick="@{viewModel.mvvm}"
                 />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="mv"
-                android:layout_marginBottom="50dp"
+
                 android:onClick="@{viewModel.mv}"
                 />
         </LinearLayout>
@@ -69,7 +69,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="查询账户信息"
-            android:layout_marginBottom="50dp"
             android:onClick="@{viewModel.getData}"
             />
 
