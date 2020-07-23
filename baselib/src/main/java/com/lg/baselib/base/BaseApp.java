@@ -4,6 +4,7 @@ package com.lg.baselib.base;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelStoreOwner;
 /**
  */
 public class BaseApp extends Application implements ViewModelStoreOwner {
+    private static Context mContext;
 
     //TODO tip：可借助 Application 来管理一个应用级 的 SharedViewModel，
     // 实现全应用范围内的 生命周期安全 且 事件源可追溯的 视图控制器 事件通知。
@@ -27,8 +29,12 @@ public class BaseApp extends Application implements ViewModelStoreOwner {
     public void onCreate() {
         super.onCreate();
         mAppViewModelStore = new ViewModelStore();
+        mContext=this;
 
+    }
 
+    public static Context getContext() {
+        return mContext;
     }
 
     @NonNull
